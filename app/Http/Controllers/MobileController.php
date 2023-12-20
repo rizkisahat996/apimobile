@@ -24,11 +24,13 @@ class MobileController extends Controller
     public function store(Request $request)
     {
         $task = new Task; 
-        $task->user_id = 1;
-        $task->title = $request->title;
-        $task->description = $request->description;
-        $task->status = "in_progress";
-        $task->deadline = Carbon::now();
+        $task->todoName = $request->todoName;
+        if($request->isComplete)
+        {
+            $task->isComplete = $request->isComplete;
+        }
+        $task->createdAt = $request->createdAt;
+        $task->updatedAt = $request->updatedAt;
 
         $task->save(); 
         
